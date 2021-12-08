@@ -1,0 +1,64 @@
+package MySource;
+
+import java.util.ArrayList;
+
+public class Department {
+    private int id;
+    private String description;
+    private Teacher dean;
+    
+    public ArrayList<Teacher> TeacherList = new ArrayList<>();
+    public ArrayList<Student> StudentList = new ArrayList<>();
+    public ArrayList<Staff> StaffList = new ArrayList<>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Teacher getDean() {
+        return dean;
+    }
+
+    public void setDean(Teacher dean) {
+        this.dean = dean;
+    }
+
+    public Department(int id){
+        this.id = id;
+    }
+    
+    public Department(int id, String description, Teacher dean) {
+        this.id = id;
+        this.description = description;
+        this.dean = dean;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" + "id=" + id + ", description=" + description + ", dean=" + dean + '}';
+    }
+    
+    public void assignTeacher(Teacher t){
+        TeacherList.add(t);
+    }
+    
+    public void assignStudent(Student s){
+        StudentList.add(s);
+    }
+    
+    public void assignStaff(Staff s){
+        StaffList.add(s);
+    }
+}
