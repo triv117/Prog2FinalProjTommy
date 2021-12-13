@@ -47,7 +47,7 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department{" + "id=" + id + ", description=" + description + ", dean=" + dean + '}';
+        return "Department{" + "id=" + id + ", description=" + description + ", dean=" + dean.getId() + '}';
     }
     
     public void assignTeacher(Teacher t){
@@ -60,5 +60,22 @@ public class Department {
     
     public void assignStaff(Staff s){
         StaffList.add(s);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj!=null){
+            if(obj.getClass()==this.getClass()){
+                Department emp = (Department) obj;
+                return (emp.getId()==this.getId());
+            }
+        }
+        return true;
     }
 }

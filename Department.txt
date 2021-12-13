@@ -1,0 +1,3 @@
+1001,STEM,Placeholder
+1003,Social Sciences,Placeholder
+1005,Economics,Placeholder

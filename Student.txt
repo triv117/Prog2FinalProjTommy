@@ -1,0 +1,8 @@
+1111,Markov Tchebychev,20,male,computer science,5,1001
+2222,Marcarita Wang,21,female,computer science,4,1001
+3333,Yena Kolmogorov,20,other,mathematic,4,1001
+4444,Marquis carita,18,male,Physics,3,1001
+5555,Emma Vados,18,female,History,2,1003
+6666,Taiandre Paixao,20,male,Law,5,1003
+7777,Malaika Levesque,19,other,Economics,3,1005
+8888,Jean-jacques Martin,19,male,Theology,3,1003

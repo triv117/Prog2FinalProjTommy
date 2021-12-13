@@ -71,5 +71,48 @@ public class CodeSnippets {//Just using this file to store code I intend on usin
                 ex.getMessage();
             }
     }
+    
+    ArrayList<Integer> IDList = new ArrayList<>();
+    ArrayList<Teacher> TempTeachList = new ArrayList<>();
+    ArrayList<Student> TempStuList = new ArrayList<>();
+    ArrayList<Staff> TempStaffList = new ArrayList<>();
+    
+    public void newTeach(int id, String name, int age, String gender,
+            String spec, String deg, int dept){
+        Teacher newTeach = new Teacher(id,name,age,gender,spec,deg,dept);
+        newTeach.setSalary(newTeach.computePayroll());
+        if (IDList.contains(id)){
+            
+        }
+        else{
+            TempTeachList.add(newTeach);
+            IDList.add(id);
+        }
+    }
+    
+    public void newStu(int id, String name, int age, String gender,
+            String course, int sem, int dept){
+        Student newStu = new Student(id,name,age,gender,course,sem,dept);
+        if (IDList.contains(id)){
+            
+        }
+        else{
+            TempStuList.add(newStu);
+            IDList.add(id);
+        }
+    }
+    
+    public void newStaff(int id, String name, int age, String gender,
+            String duty, int wload, int dept){
+        Staff newStaff = new Staff(id,name,age,gender,duty,wload,dept);
+        newStaff.setSalary(newStaff.computePayroll());
+        if (IDList.contains(id)){
+            
+        }
+        else{
+            TempStaffList.add(newStaff);
+            IDList.add(id);
+        }
+    }
 }
             

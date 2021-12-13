@@ -1,0 +1,3 @@
+9874,Steve Ataky,25,male,cleaner,30,1001
+8745,Charbel Ait-Grait,29,male,rh,28,1003
+3698,Jeanne Marcel,30,female,guard,36,1005
