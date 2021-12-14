@@ -29,8 +29,14 @@ public class Teacher extends Person implements PayRoll {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    
-    
+
+    public int getDept_id() {
+        return dept_id;
+    }
+
+    public void setDept_id(int dept_id) {
+        this.dept_id = dept_id;
+    }
     
     @Override
     public void setGender(String gender) {
@@ -75,7 +81,7 @@ public class Teacher extends Person implements PayRoll {
     @Override
     public double computePayroll() {
         double saldegree=0;
-        String bach = "bach";
+        String bach = "bachelors";
         String master = "master";
         String phd = "phd";
                 

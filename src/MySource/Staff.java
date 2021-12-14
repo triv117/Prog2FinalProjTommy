@@ -30,6 +30,14 @@ public class Staff extends Person implements PayRoll {
         this.salary = salary;
     }
 
+    public int getDept_id() {
+        return dept_id;
+    }
+
+    public void setDept_id(int dept_id) {
+        this.dept_id = dept_id;
+    }
+  
     @Override
     public void setGender(String gender) {
         super.setGender(gender); //To change body of generated methods, choose Tools | Templates.

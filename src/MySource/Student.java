@@ -44,6 +44,32 @@ public class Student extends Person{
     public int getId() {
         return super.getId(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public int getDept_id() {
+        return dept_id;
+    }
+
+    public void setDept_id(int dept_id) {
+        this.dept_id = dept_id;
+    }
+    
+    
     
     @Override
     public String category() {
