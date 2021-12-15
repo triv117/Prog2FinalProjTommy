@@ -39,6 +39,11 @@ public class Department {
         this.id = id;
     }
     
+    public Department(int id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+    
     public Department(int id, String description, Teacher dean) {
         this.id = id;
         this.description = description;
@@ -72,8 +77,8 @@ public class Department {
     public boolean equals(Object obj){
         if(obj!=null){
             if(obj.getClass()==this.getClass()){
-                Department emp = (Department) obj;
-                return (emp.getId()==this.getId());
+                Department dep = (Department) obj;
+                return (dep.getId()==this.getId());
             }
         }
         return true;

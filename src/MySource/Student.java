@@ -69,8 +69,6 @@ public class Student extends Person{
         this.dept_id = dept_id;
     }
     
-    
-    
     @Override
     public String category() {
         return "Student";

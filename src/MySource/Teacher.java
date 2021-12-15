@@ -101,7 +101,11 @@ public class Teacher extends Person implements PayRoll {
     public String category() {
         return "Teacher";
     }
-
+    
+    public Teacher(int id){
+        this.id = id;
+    }
+    
     public Teacher(int id, String name, int age, String gender,
             String specialty, String degree, int dept_id) {
         this.id = id;
@@ -117,5 +121,16 @@ public class Teacher extends Person implements PayRoll {
     public String toString() {
         return "Teacher{id=" +id+", name="+name+", age="+age+", gender="+gender+
                 ", specialty=" + specialty + ", degree=" + degree + '}';
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        if(obj!=null){
+            if(obj.getClass()==this.getClass()){
+                Teacher teach = (Teacher) obj;
+                return (teach.getId()==this.getId());
+            }
+        }
+        return true;
     }
 }
