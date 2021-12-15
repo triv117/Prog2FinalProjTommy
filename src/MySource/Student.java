@@ -74,6 +74,10 @@ public class Student extends Person{
         return "Student";
     }
     
+    public Student(int id){
+        this.id = id;
+    }
+    
     public Student(int id, String name, int age, String gender, String course, 
             int semester, int dept_id) {
         this.id = id;
@@ -88,5 +92,16 @@ public class Student extends Person{
     @Override
     public String toString() {
         return "Student{" + "course=" + course + ", semester=" + semester + '}';
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        if(obj!=null){
+            if(obj.getClass()==this.getClass()){
+                Student stu = (Student) obj;
+                return (stu.getId()==this.getId());
+            }
+        }
+        return true;
     }
 }

@@ -122,7 +122,7 @@ public class CodeSnippets {//Just using this file to store code I intend on usin
         }
     }
     
-    public static void write(String data, String path) throws IOException{
+    public void write(String data, String path) throws IOException{
         BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
         writer.write(data);
         writer.close();
@@ -179,6 +179,32 @@ public class CodeSnippets {//Just using this file to store code I intend on usin
         else{
             TempStaffList.add(newStaff);
             IDList.add(id);
+        }
+    }
+    
+    public void search(int id){
+        int student = 0;
+        int teacher = 0;
+        int staff = 0;
+        for (Department d: DeptList){
+            for(int i=0; i<d.StudentList.size(); i++){
+                if(d.StudentList.get(i).getId()==id){
+                    student = 1;
+                }
+            }
+            for(int i=0; i<d.TeacherList.size(); i++){
+                if(d.TeacherList.get(i).getId()==id){
+                    teacher = 1;
+                }
+            }
+            for(int i=0; i<d.StaffList.size(); i++){
+                if(d.StaffList.get(i).getId()==id){
+                    staff = 1;
+                }
+            }
+        }
+        if(student==0 && teacher==0 && staff==0){
+                System.out.println("No results");
         }
     }
 }
