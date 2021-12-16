@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="MySource.MainSceneController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.MainSceneController">
    <children>
-      <Text layoutX="252.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLACEHOLDER" />
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <SplitPane dividerPositions="0.2833333333333333" layoutX="-5.0" layoutY="42.0" prefHeight="355.0" prefWidth="689.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Label layoutX="58.0" layoutY="3.0" text="Functions" />
+                        <Button fx:id="deptAddBtn" layoutX="30.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Add Department" />
+                        <Button fx:id="deptDelBtn" layoutX="30.0" layoutY="52.0" mnemonicParsing="false" text="Delete Department" />
+                        <Button fx:id="deanBtn" layoutX="30.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Assign Dean" />
+                        <Button fx:id="stuAddBtn" layoutX="30.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Add Student" />
+                        <Button fx:id="stuDelBtn" layoutX="30.0" layoutY="133.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Delete Student" />
+                        <Button fx:id="teachAddBtn" layoutX="30.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Add Teacher" />
+                        <Button fx:id="teachDelBtn" layoutX="30.0" layoutY="187.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Delete Teacher" />
+                        <Button fx:id="stfAddBtn" layoutX="30.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Add Staff" />
+                        <Button fx:id="stfDelBtn" layoutX="30.0" layoutY="241.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Delete Staff" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="353.0" prefWidth="296.0">
+                     <children>
+                        <VBox layoutX="1.0" layoutY="22.0" prefHeight="331.0" prefWidth="298.0">
+                           <children>
+                              <TableView fx:id="deptTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="295.0" VBox.vgrow="NEVER">
+                                <columns>
+                                  <TableColumn fx:id="deptIDCol" prefWidth="75.0" text="ID" />
+                                  <TableColumn fx:id="deptDescCol" prefWidth="135.0" text="Description" />
+                                    <TableColumn fx:id="deptDeanCol" prefWidth="83.0" text="Dean ID" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        <Label layoutX="112.0" layoutY="1.0" text="Departments" />
+                        <TextField fx:id="viewField" layoutX="322.0" layoutY="54.0" />
+                        <Text layoutX="339.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Department  ID" />
+                        <Button fx:id="stuViewBtn" layoutX="351.0" layoutY="83.0" mnemonicParsing="false" text="View Students" />
+                        <Button fx:id="teachViewBtn" layoutX="351.0" layoutY="110.0" mnemonicParsing="false" text="View Teachers" />
+                        <Button fx:id="stfViewBtn" layoutX="351.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="View Staff" />
+                        <TextField fx:id="searchField" layoutX="322.0" layoutY="231.0" />
+                        <Button fx:id="searchBtn" layoutX="351.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Search" />
+                        <Text layoutX="352.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Person ID" />
+                        <Button fx:id="deptLoadBtn" layoutX="253.0" layoutY="-3.0" mnemonicParsing="false" onAction="#load" text="Load" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+            <Label layoutX="304.0" layoutY="6.0" text="Main Program" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

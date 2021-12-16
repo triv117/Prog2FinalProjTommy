@@ -12,7 +12,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MainSceneController implements Initializable {
     
@@ -29,17 +36,58 @@ public class MainSceneController implements Initializable {
     public ArrayList<Integer> IDList = new ArrayList<>();
 
     FolderSceneController path = new FolderSceneController();
+    @FXML
+    private Button deptAddBtn;
+    @FXML
+    private Button deptDelBtn;
+    @FXML
+    private Button deanBtn;
+    @FXML
+    private Button stuAddBtn;
+    @FXML
+    private Button stuDelBtn;
+    @FXML
+    private Button teachAddBtn;
+    @FXML
+    private Button teachDelBtn;
+    @FXML
+    private Button stfAddBtn;
+    @FXML
+    private Button stfDelBtn;
+    @FXML
+    private TableView<Department> deptTable;
+    @FXML
+    private TableColumn<Department, Integer> deptIDCol;
+    @FXML
+    private TableColumn<Department, String> deptDescCol;
+    @FXML
+    private TableColumn<Department, Teacher> deptDeanCol;
+    @FXML
+    private TextField viewField;
+    @FXML
+    private Button stuViewBtn;
+    @FXML
+    private Button teachViewBtn;
+    @FXML
+    private Button stfViewBtn;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private Button searchBtn;
+    @FXML
+    private Button deptLoadBtn;
     
-    public void readWrite(){
-        String pathDeptRead = path.getStuPath();
-        String pathStuRead = path.getStuPath();
-        String pathTeachRead = path.getTeach();
-        String pathStaffRead = path.getStf();
+    @FXML
+    public void load(ActionEvent event){
+        String pathDeptRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Department.txt";//To Change
+        String pathStuRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Student.txt";//To Change
+        String pathTeachRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Teacher.txt";//To Change
+        String pathStaffRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Staff.txt";//To Change
 
-        String pathDeptWrite = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Department "+DateTime+".txt";//To Change
-        String pathStuWrite = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Student "+DateTime+".txt";//To Change
-        String pathTeachWrite = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Teacher "+DateTime+".txt";//To Change        
-        String pathStaffWrite = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Staff "+DateTime+".txt";//To Change
+        String pathDeptWrite = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\NewDepartment.txt";//To Change
+        String pathStuWrite = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\NewStudent.txt";//To Change
+        String pathTeachWrite = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\NewTeacher.txt";//To Change        
+        String pathStaffWrite = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\NewStaff.txt";//To Change
 
         try{
             RandomAccessFile fileDept = new RandomAccessFile(pathDeptRead,"r");
@@ -127,6 +175,7 @@ public class MainSceneController implements Initializable {
                     }
                 }
             }
+            displayDeptList(DeptList);
         }catch(FileNotFoundException ex){
             ex.getMessage();
         }catch(IOException ex){
@@ -139,9 +188,16 @@ public class MainSceneController implements Initializable {
         writer.write(data);
         writer.close();
     }
+    
+    public void displayDeptList(ObservableList<Department> tableArray){
+        deptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        deptDescCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        deptTable.setItems(tableArray);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
     
 }

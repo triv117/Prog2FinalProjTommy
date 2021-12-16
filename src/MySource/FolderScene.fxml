@@ -39,5 +39,6 @@
       <TextField fx:id="staffTxtField" layoutX="116.0" layoutY="100.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="271.0" />
       <Text layoutX="14.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Locations - Enter the location of the required file:" />
       <Button fx:id="launchBtn" layoutX="16.0" layoutY="123.0" mnemonicParsing="false" onAction="#goToMainScene" text="Launch" />
+      <Text layoutX="116.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure you double slash the location!" />
    </children>
 </AnchorPane>
