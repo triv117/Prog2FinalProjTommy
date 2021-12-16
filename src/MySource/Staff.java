@@ -88,6 +88,14 @@ public class Staff extends Person implements PayRoll {
         return "Staff";
     }
     
+    public Staff(){
+        
+    }
+    
+    public Staff(int id){
+        this.id = id;
+    }
+    
     public Staff(int id, String name, int age, String gender, String duty, 
             int workload, int dept_id) {
         this.id = id;

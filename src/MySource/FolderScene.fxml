@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="155.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="MySource.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="155.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.FolderSceneController">
    <children>
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="130.0" prefWidth="97.0">
          <children>
@@ -39,6 +38,6 @@
       <TextField fx:id="teachTextField" layoutX="116.0" layoutY="74.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="271.0" />
       <TextField fx:id="staffTxtField" layoutX="116.0" layoutY="100.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="271.0" />
       <Text layoutX="14.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Locations - Enter the location of the required file:" />
-      <Button fx:id="launchBtn" layoutX="16.0" layoutY="123.0" mnemonicParsing="false" text="Launch" />
+      <Button fx:id="launchBtn" layoutX="16.0" layoutY="123.0" mnemonicParsing="false" onAction="#goToMainScene" text="Launch" />
    </children>
 </AnchorPane>

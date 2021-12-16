@@ -34,6 +34,11 @@ public class Department {
     public void setDean(Teacher dean) {
         this.dean = dean;
     }
+    
+    public Department(){
+    
+    }
+    
 
     public Department(int id){
         this.id = id;

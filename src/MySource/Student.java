@@ -74,6 +74,10 @@ public class Student extends Person{
         return "Student";
     }
     
+    public Student(){
+        
+    }
+    
     public Student(int id){
         this.id = id;
     }

@@ -102,6 +102,10 @@ public class Teacher extends Person implements PayRoll {
         return "Teacher";
     }
     
+    public Teacher(){
+        
+    }
+    
     public Teacher(int id){
         this.id = id;
     }
