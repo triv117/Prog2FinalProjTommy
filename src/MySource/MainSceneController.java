@@ -14,12 +14,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class MainSceneController implements Initializable {
     
@@ -33,7 +38,7 @@ public class MainSceneController implements Initializable {
     public static ObservableList<Student> TempStuList = FXCollections.observableArrayList();
     public static ObservableList<Staff> TempStaffList = FXCollections.observableArrayList();
     
-    public ArrayList<Integer> IDList = new ArrayList<>();
+    public static ArrayList<Integer> IDList = new ArrayList<>();
 
     FolderSceneController path = new FolderSceneController();
     @FXML
@@ -76,8 +81,17 @@ public class MainSceneController implements Initializable {
     private Button searchBtn;
     @FXML
     private Button deptLoadBtn;
-    
     @FXML
+    private Button deptRefreshBtn;
+    @FXML
+    private TextField deptSetIDField;
+    @FXML
+    private TextField deptSetDescField;
+    @FXML
+    private TextField deptSetDeanField;
+    @FXML
+    private Button deptCreateBtn;
+    
     public void load(ActionEvent event){
         String pathDeptRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Department.txt";//To Change
         String pathStuRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Student.txt";//To Change
@@ -189,15 +203,45 @@ public class MainSceneController implements Initializable {
         writer.close();
     }
     
+    @FXML
+    public void refreshDeptList(ActionEvent event){
+        displayDeptList(DeptList);
+    }
+    
+    
     public void displayDeptList(ObservableList<Department> tableArray){
         deptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         deptDescCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         deptTable.setItems(tableArray);
     }
     
+    
+    public void addDeptartment(ActionEvent event) throws IOException{
+        Department newDept = new Department(Integer.parseInt(deptSetIDField.getText()),
+                deptSetDescField.getText());
+        if (IDList.contains(Integer.parseInt(deptSetIDField.getText()))==true){
+            throw new IDIntegrityException("ID '"+Integer.parseInt(deptSetIDField.getText())+"' is already in use");
+        }
+        DeptList.add(newDept);
+        IDList.add(Integer.parseInt(deptSetIDField.getText()));
+        System.out.println("New Dept Created: "+Integer.parseInt(deptSetIDField.getText()));
+    }
+    
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    
+    @FXML
+    public void goToAddDepartmentScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AddDepartmentScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
 }

@@ -14,12 +14,12 @@
    <children>
       <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <SplitPane dividerPositions="0.2833333333333333" layoutX="-5.0" layoutY="42.0" prefHeight="355.0" prefWidth="689.0">
+            <SplitPane dividerPositions="0.2833333333333333" layoutX="-5.0" layoutY="38.0" prefHeight="357.0" prefWidth="689.0">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <Label layoutX="58.0" layoutY="3.0" text="Functions" />
-                        <Button fx:id="deptAddBtn" layoutX="30.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Add Department" />
+                        <Button fx:id="deptAddBtn" layoutX="30.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToAddDepartmentScene" prefWidth="118.0" text="Add Department" />
                         <Button fx:id="deptDelBtn" layoutX="30.0" layoutY="52.0" mnemonicParsing="false" text="Delete Department" />
                         <Button fx:id="deanBtn" layoutX="30.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Assign Dean" />
                         <Button fx:id="stuAddBtn" layoutX="30.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="118.0" text="Add Student" />
@@ -32,7 +32,7 @@
                   </AnchorPane>
                 <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="353.0" prefWidth="296.0">
                      <children>
-                        <VBox layoutX="1.0" layoutY="22.0" prefHeight="331.0" prefWidth="298.0">
+                        <VBox layoutX="1.0" layoutY="27.0" prefHeight="331.0" prefWidth="298.0">
                            <children>
                               <TableView fx:id="deptTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="295.0" VBox.vgrow="NEVER">
                                 <columns>
@@ -43,7 +43,7 @@
                               </TableView>
                            </children>
                         </VBox>
-                        <Label layoutX="112.0" layoutY="1.0" text="Departments" />
+                        <Label layoutX="112.0" layoutY="5.0" text="Departments" />
                         <TextField fx:id="viewField" layoutX="322.0" layoutY="54.0" />
                         <Text layoutX="339.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Department  ID" />
                         <Button fx:id="stuViewBtn" layoutX="351.0" layoutY="83.0" mnemonicParsing="false" text="View Students" />
@@ -52,7 +52,8 @@
                         <TextField fx:id="searchField" layoutX="322.0" layoutY="231.0" />
                         <Button fx:id="searchBtn" layoutX="351.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Search" />
                         <Text layoutX="352.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Person ID" />
-                        <Button fx:id="deptLoadBtn" layoutX="253.0" layoutY="-3.0" mnemonicParsing="false" onAction="#load" text="Load" />
+                        <Button fx:id="deptLoadBtn" layoutX="196.0" layoutY="1.0" mnemonicParsing="false" onAction="#load" text="Load" />
+                        <Button fx:id="deptRefreshBtn" layoutX="243.0" layoutY="1.0" mnemonicParsing="false" onAction="#refreshDeptList" text="Refresh" />
                      </children>
                   </AnchorPane>
               </items>

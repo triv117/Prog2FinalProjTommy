@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="190.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.MainSceneController">
+   <children>
+      <Label layoutX="99.0" layoutY="14.0" text="Add Department" />
+      <TextField fx:id="deptSetIDField" layoutX="90.0" layoutY="51.0" />
+      <TextField fx:id="deptSetDescField" layoutX="90.0" layoutY="81.0" />
+      <TextField fx:id="deptSetDeanField" layoutX="90.0" layoutY="109.0" />
+      <Button fx:id="deptCreateBtn" layoutX="91.0" layoutY="142.0" mnemonicParsing="false" onAction="#addDeptartment" text="Create" />
+      <Text layoutX="45.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+      <Text layoutX="16.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+      <Text layoutX="28.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dean ID" />
+   </children>
+</AnchorPane>
