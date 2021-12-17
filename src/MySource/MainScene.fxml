@@ -20,17 +20,17 @@
                      <children>
                         <Label layoutX="64.0" layoutY="3.0" text="Functions" />
                         <Button fx:id="deptAddBtn" layoutX="30.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToAddDepartmentScene" prefWidth="125.0" text="Add Department" />
-                        <Button fx:id="deptDelBtn" layoutX="30.0" layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Delete Department" />
-                        <Button fx:id="stuAddBtn" layoutX="30.0" layoutY="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Add Student" />
-                        <Button fx:id="stuDelBtn" layoutX="30.0" layoutY="135.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Delete Student" />
-                        <Button fx:id="teachAddBtn" layoutX="30.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Add Teacher" />
-                        <Button fx:id="teachDelBtn" layoutX="30.0" layoutY="216.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Delete Teacher" />
-                        <Button fx:id="stfAddBtn" layoutX="30.0" layoutY="270.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Add Staff" />
-                        <Button fx:id="stfDelBtn" layoutX="30.0" layoutY="297.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Delete Staff" />
-                        <Button fx:id="deptModBtn" layoutX="30.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Modify Department" />
-                        <Button fx:id="stuModBtn" layoutX="30.0" layoutY="162.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Modify Student" />
-                        <Button fx:id="teachModBtn" layoutX="30.0" layoutY="243.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Modify Teacher" />
-                        <Button fx:id="stfModBtn" layoutX="30.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" text="Modify Teacher" />
+                        <Button fx:id="deptDelBtn" layoutX="30.0" layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToDeleteDepartmentScene" prefWidth="125.0" text="Delete Department" />
+                        <Button fx:id="stuAddBtn" layoutX="30.0" layoutY="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToAddStudentScene" prefWidth="125.0" text="Add Student" />
+                        <Button fx:id="stuDelBtn" layoutX="30.0" layoutY="135.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToDeleteStudentScene" prefWidth="125.0" text="Delete Student" />
+                        <Button fx:id="teachAddBtn" layoutX="30.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToAddTeacherScene" prefWidth="125.0" text="Add Teacher" />
+                        <Button fx:id="teachDelBtn" layoutX="30.0" layoutY="216.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToDeleteTeacherScene" prefWidth="125.0" text="Delete Teacher" />
+                        <Button fx:id="stfAddBtn" layoutX="30.0" layoutY="270.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToAddStaffScene" prefWidth="125.0" text="Add Staff" />
+                        <Button fx:id="stfDelBtn" layoutX="30.0" layoutY="297.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToDeleteStaffScene" prefWidth="125.0" text="Delete Staff" />
+                        <Button fx:id="deptModBtn" layoutX="30.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToModifyDepartmentScene" prefWidth="125.0" text="Modify Department" />
+                        <Button fx:id="stuModBtn" layoutX="30.0" layoutY="162.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToModifyStudentScene" prefWidth="125.0" text="Modify Student" />
+                        <Button fx:id="teachModBtn" layoutX="30.0" layoutY="243.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToModifyTeacherScene" prefWidth="125.0" text="Modify Teacher" />
+                        <Button fx:id="stfModBtn" layoutX="30.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToModifyStaffScene" prefWidth="125.0" text="Modify Staff" />
                      </children>
                   </AnchorPane>
                 <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="353.0" prefWidth="296.0">
@@ -49,9 +49,9 @@
                         <Label layoutX="112.0" layoutY="5.0" text="Departments" />
                         <TextField fx:id="viewField" layoutX="322.0" layoutY="54.0" />
                         <Text layoutX="339.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Department  ID" />
-                        <Button fx:id="stuViewBtn" layoutX="351.0" layoutY="83.0" mnemonicParsing="false" text="View Students" />
-                        <Button fx:id="teachViewBtn" layoutX="351.0" layoutY="110.0" mnemonicParsing="false" text="View Teachers" />
-                        <Button fx:id="stfViewBtn" layoutX="351.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="View Staff" />
+                        <Button fx:id="stuViewBtn" layoutX="351.0" layoutY="83.0" mnemonicParsing="false" onAction="#goToViewStudentScene" text="View Students" />
+                        <Button fx:id="teachViewBtn" layoutX="351.0" layoutY="110.0" mnemonicParsing="false" onAction="#goToViewTeacherScene" text="View Teachers" />
+                        <Button fx:id="stfViewBtn" layoutX="351.0" layoutY="137.0" mnemonicParsing="false" onAction="#goToViewStaffScene" prefHeight="25.0" prefWidth="92.0" text="View Staff" />
                         <TextField fx:id="searchField" layoutX="322.0" layoutY="231.0" />
                         <Button fx:id="searchBtn" layoutX="351.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Search" />
                         <Text layoutX="352.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Person ID" />

@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="294.0" prefWidth="301.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="MySource.MainSceneController">
+<AnchorPane id="AnchorPane" prefHeight="294.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.MainSceneController">
    <children>
       <Label layoutX="104.0" layoutY="25.0" text="Modify Student" />
       <TextField fx:id="stuModIDField" layoutX="74.0" layoutY="67.0" />
@@ -16,7 +15,7 @@
       <Text layoutX="37.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter ID of the Student you want to modify" />
       <Text layoutX="23.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
       <Text layoutX="27.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" />
-      <Button fx:id="stuModBtn2" layoutX="73.0" layoutY="253.0" mnemonicParsing="false" text="Modify" />
+      <Button fx:id="stuModBtn2" layoutX="73.0" layoutY="253.0" mnemonicParsing="false" onAction="#ModifyStudent" text="Modify" />
       <TextField fx:id="stuModGenderField" layoutX="73.0" layoutY="172.0" />
       <TextField fx:id="stuModCourseField" layoutX="73.0" layoutY="199.0" />
       <TextField fx:id="stuModSemesterField" layoutX="73.0" layoutY="226.0" />

@@ -1,3 +1,0 @@
-1001,Exact Sciences
-1003,Humanities
-1005,Social Sciences

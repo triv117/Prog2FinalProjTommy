@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 public class MainSceneController implements Initializable {
     
     
- LocalDateTime getTime = LocalDateTime.now();
+    LocalDateTime getTime = LocalDateTime.now();
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     String DateTime = getTime.format(timeFormat);
     
@@ -37,7 +37,7 @@ public class MainSceneController implements Initializable {
     public static ObservableList<Teacher> TempTeachList = FXCollections.observableArrayList();
     public static ObservableList<Student> TempStuList = FXCollections.observableArrayList();
     public static ObservableList<Staff> TempStaffList = FXCollections.observableArrayList();
-    
+    //To ensure ID integrity
     public static ArrayList<Integer> IDList = new ArrayList<>();
 
     FolderSceneController path = new FolderSceneController();
@@ -266,7 +266,13 @@ public class MainSceneController implements Initializable {
     @FXML
     private Button stfLoadBtn;
     
-    public void load(ActionEvent event){
+    //Used to track the number of times the data is loaded from the text file
+    static int load = 0;
+    
+    public void load(ActionEvent event){//Loads form text files, creates new file, displays departments in MainScene's table
+        if (load>0){//Stops user form loading from the file more than once
+            throw new IDIntegrityException("Only load the data once!");
+        }
         String pathDeptRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Department.txt";//To Change
         String pathStuRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Student.txt";//To Change
         String pathTeachRead = "C:\\\\Users\\\\TomRi\\\\Desktop\\\\FinalProject\\\\Prog2FinalProjTommy\\\\Teacher.txt";//To Change
@@ -283,18 +289,18 @@ public class MainSceneController implements Initializable {
             RandomAccessFile fileTeach = new RandomAccessFile(pathTeachRead,"r");
             RandomAccessFile fileStaff = new RandomAccessFile(pathStaffRead,"r");
             String str;
-                
+            //Reading from Department
             while((str=fileDept.readLine()) != null){
                 String department[] = str.split(",");
                 DeptList.add(new Department(Integer.parseInt(department[0]),department[1]));
                 System.out.println("New Dept Created: " + Integer.parseInt(department[0]));
-            
+                //Writing
                 String line = Integer.parseInt(department[0])+","+department[1]+"\n";
                 write(line, pathDeptWrite);
                 
                 IDList.add(Integer.parseInt(department[0]));
             }
-
+            //Reading from Student
             while((str=fileStu.readLine()) != null){
                 String student[] = str.split(",");
                 Department test = new Department((Integer.parseInt(student[6])));
@@ -308,7 +314,7 @@ public class MainSceneController implements Initializable {
                             Integer.parseInt(student[5]), Integer.parseInt(student[6])));
                         System.out.println("New Student Created: " + Integer.parseInt(student[0]));
                                
-                        for(Student st: d.StudentList){
+                        for(Student st: d.StudentList){//Writing
                             String line = st.id+","+st.name+","+st.age+","+st.gender+","+st.getCourse()
                                 +","+st.getSemester()+","+st.getDept_id()+"\n";
                             write(line, pathStuWrite);
@@ -317,7 +323,7 @@ public class MainSceneController implements Initializable {
                     }
                 }           
             }
-            
+            //Reading from Teacher
             while((str=fileTeach.readLine()) != null){
             String teacher[] = str.split(",");
                 Department test = new Department((Integer.parseInt(teacher[6])));
@@ -331,7 +337,7 @@ public class MainSceneController implements Initializable {
                             teacher[5], Integer.parseInt(teacher[6])));
                         System.out.println("New Teacher Created: " + Integer.parseInt(teacher[0]));
                                
-                        for(Teacher te: d.TeacherList){
+                        for(Teacher te: d.TeacherList){//Writing
                             String line = te.id+","+te.name+","+te.age+","+te.gender+","+te.getSpecialty()
                                 +","+te.getDegree()+","+te.getDept_id()+"\n";
                             write(line, pathTeachWrite);
@@ -340,7 +346,7 @@ public class MainSceneController implements Initializable {
                     }
                 }
             }
-        
+            //Reading from Staff
             while((str=fileStaff.readLine()) != null){
                 String staff[] = str.split(",");
                 Department test = new Department((Integer.parseInt(staff[6])));
@@ -354,7 +360,7 @@ public class MainSceneController implements Initializable {
                             Integer.parseInt(staff[5]), Integer.parseInt(staff[6])));
                         System.out.println("New Staff Created: " + Integer.parseInt(staff[0]));
                                
-                        for(Staff stf: d.StaffList){
+                        for(Staff stf: d.StaffList){//Writing
                             String line = stf.id+","+stf.name+","+stf.age+","+stf.gender+","+stf.getDuty()
                                 +","+stf.getWorkload()+","+stf.getDept_id()+"\n";
                             write(line, pathStaffWrite);
@@ -363,6 +369,7 @@ public class MainSceneController implements Initializable {
                     }
                 }
             }
+            load++;
             displayDeptList(DeptList);
         }catch(FileNotFoundException ex){
             ex.getMessage();
@@ -377,19 +384,20 @@ public class MainSceneController implements Initializable {
         writer.close();
     }
     
+    //Department Functions:
     @FXML
     public void refreshDeptList(ActionEvent event){
         displayDeptList(DeptList);
     }
     
-    
+    @FXML
     public void displayDeptList(ObservableList<Department> tableArray){
         deptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         deptDescCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         deptTable.setItems(tableArray);
     }
     
-    
+    @FXML
     public void addDeptartment(ActionEvent event) throws IOException{
         Department newDept = new Department(Integer.parseInt(deptSetIDField.getText()),
                 deptSetDescField.getText());
@@ -399,11 +407,168 @@ public class MainSceneController implements Initializable {
         DeptList.add(newDept);
         IDList.add(Integer.parseInt(deptSetIDField.getText()));
         System.out.println("New Dept Created: "+Integer.parseInt(deptSetIDField.getText()));
+        BackToMainScene(event);
     }
     
+    @FXML
+    public void deleteDepartment(ActionEvent event) throws IOException{
+        boolean contains = false;
+        if (deptDelField.getText().trim().isEmpty()==true){
+            throw new NullFieldException("Field is Empty!");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            if(DeptList.get(i).getId()==Integer.parseInt(deptDelField.getText())){
+                DeptList.remove(i);
+                contains = true;
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid ID!");
+        }
+        BackToMainScene(event);
+    }
+    
+    @FXML
+    public void ModifyDepartment(ActionEvent event) throws IOException{
+        int index=0;
+        boolean contains = false;
+        if (deptModIDField.getText().trim().isEmpty()==true){
+            throw new NullFieldException("Field is Empty!");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            if(DeptList.get(i).getId()==Integer.parseInt(deptModIDField.getText())){
+                index=i;
+                contains = true;
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid Department ID!");
+        }
+        contains=false;
+        if (deptModDescField.getText().trim().isEmpty()==false){
+            DeptList.get(index).setDescription(deptModDescField.getText());
+        }
+        if (deptModDeanField.getText().trim().isEmpty()==false){
+            for (int i = 0; i<DeptList.get(index).TeacherList.size(); i++)
+                if(DeptList.get(index).TeacherList.get(i).getId()==Integer.parseInt(deptModDeanField.getText())){
+                    DeptList.get(index).setDean(DeptList.get(index).TeacherList.get(i));
+                    contains=true;
+                }
+        }
+        if(contains==false){
+            throw new NullFieldException("Invalid Teacher ID!");
+        }
+        BackToMainScene(event);
+    }
+    
+    //Student Functions
+    @FXML
+    public void addStudent(ActionEvent event) throws IOException{
+        int index=0;
+        boolean contains = false;
+        Student newStu = new Student(Integer.parseInt(stuSetIDField.getText()),
+                stuSetNameField.getText(),Integer.parseInt(stuSetAgeField.getText()),
+                stuSetGenderField.getText(), stuSetCourseField.getText(), 
+                Integer.parseInt(stuSetSemesterField.getText()),
+                Integer.parseInt(stuSetDeptIDField.getText()));
+        if (IDList.contains(Integer.parseInt(stuSetIDField.getText()))==true){
+            throw new IDIntegrityException("ID '"+Integer.parseInt(stuSetIDField.getText())+"' is already in use");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            if(DeptList.get(i).getId()==Integer.parseInt(stuSetDeptIDField.getText())){
+                index=i;
+                contains=true;
+            }
+        }
+        if (contains==true){
+            DeptList.get(index).StudentList.add(newStu);
+        }
+        else{
+            throw new NullFieldException("Invalid Dept ID!");
+        }
+        IDList.add(Integer.parseInt(stuSetIDField.getText()));
+        System.out.println("New Student Created: "+Integer.parseInt(stuSetIDField.getText()));
+        BackToMainScene(event);
+    }
+    
+    @FXML
+    public void deleteStudent(ActionEvent event) throws IOException{
+        int deptIndex = 0;
+        int stuIndex = 0;
+        boolean contains = false;
+        if (stuDelField.getText().trim().isEmpty()==true){
+            throw new NullFieldException("Field is Empty!");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            for(int j = 0; j<DeptList.get(i).StudentList.size(); j++){
+                if(DeptList.get(i).StudentList.get(j).getId()==Integer.parseInt(stuDelField.getText())){
+                    deptIndex = i;
+                    stuIndex = j;
+                    DeptList.get(deptIndex).StudentList.remove(stuIndex);
+                    System.out.println("Student Deleted: "+Integer.parseInt(stuDelField.getText()));
+                    contains = true;
+                }
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid Student ID!");
+        }
+        BackToMainScene(event);
+    }
+    
+    @FXML
+    public void ModifyStudent(ActionEvent event) throws IOException{
+        int deptIndex = 0;
+        int stuIndex = 0;
+        boolean contains = false;
+        if (stuModIDField.getText().trim().isEmpty()==true){
+            throw new NullFieldException("Field is Empty!");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            for(int j = 0; j<DeptList.get(i).StudentList.size(); j++){
+                if(DeptList.get(i).StudentList.get(j).getId()==Integer.parseInt(stuModIDField.getText())){
+                    deptIndex=i;
+                    stuIndex=j;
+                    contains = true;
+                }
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid Department ID!");
+        }
+        if (stuModNameField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StudentList.get(stuIndex).setName(stuModNameField.getText());
+        }
+        if (stuModAgeField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StudentList.get(stuIndex).setAge(Integer.parseInt(stuModNameField.getText()));
+        }
+        if (stuModGenderField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StudentList.get(stuIndex).setGender(stuModGenderField.getText());
+        }
+        if (stuModCourseField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StudentList.get(stuIndex).setCourse(stuModCourseField.getText());
+        }
+        if (stuModSemesterField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StudentList.get(stuIndex).setSemester(Integer.parseInt(stuModSemesterField.getText()));
+        }
+        System.out.println("Student Modified: "+Integer.parseInt(stuModIDField.getText()));
+        BackToMainScene(event);
+    }
+        
+    
+    //Scene Transitions:
     private Stage stage;
     private Scene scene;
     private Parent root;
+    
+    @FXML
+    public void BackToMainScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     
     @FXML
     public void goToAddDepartmentScene(ActionEvent event) throws IOException {
@@ -414,8 +579,133 @@ public class MainSceneController implements Initializable {
         stage.show();
     }
     
+    @FXML
+    public void goToAddStudentScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AddStudentScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToAddTeacherScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AddTeacherScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToAddStaffScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AddStaffScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToDeleteDepartmentScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("DeleteDepartmentScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToDeleteStudentScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("DeleteStudentScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToDeleteTeacherScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("DeleteTeacherScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToDeleteStaffScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("DeleteStaffScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToModifyDepartmentScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ModifyDepartmentScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToModifyStudentScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ModifyStudentScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToModifyTeacherScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ModifyTeacherScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToModifyStaffScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ModifyStaffScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToViewStudentScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ViewStudentScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToViewTeacherScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ViewTeacherScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void goToViewStaffScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ViewStaffScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 }
