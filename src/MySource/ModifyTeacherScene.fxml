@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="294.0" prefWidth="301.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="MySource.MainSceneController">
+   <children>
+      <Label layoutX="104.0" layoutY="25.0" text="Modify Teacher" />
+      <TextField fx:id="teachModIDField" layoutX="74.0" layoutY="67.0" />
+      <TextField fx:id="teachModNameField" layoutX="74.0" layoutY="118.0" />
+      <TextField fx:id="teachModAgeField" layoutX="73.0" layoutY="145.0" />
+      <Text layoutX="37.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter ID of the Teacher you want to modify" />
+      <Text layoutX="23.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="27.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" />
+      <Button fx:id="stuModBtn2" layoutX="73.0" layoutY="253.0" mnemonicParsing="false" text="Modify" />
+      <TextField fx:id="teachModGenderField" layoutX="73.0" layoutY="172.0" />
+      <TextField fx:id="teachModSpecField" layoutX="73.0" layoutY="199.0" />
+      <TextField fx:id="teachModDegField" layoutX="73.0" layoutY="226.0" />
+      <Text layoutX="20.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+      <Text layoutX="15.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialty" />
+      <Text layoutX="18.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Degree" />
+   </children>
+</AnchorPane>

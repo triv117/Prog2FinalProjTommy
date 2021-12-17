@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.MainSceneController">
+   <children>
+      <Label layoutX="120.0" layoutY="14.0" text="Add Staff" />
+      <TextField fx:id="stfSetIDField" layoutX="90.0" layoutY="51.0" />
+      <TextField fx:id="stfSetNameField" layoutX="90.0" layoutY="81.0" />
+      <TextField fx:id="stfSetAgeField" layoutX="90.0" layoutY="109.0" />
+      <Button fx:id="stfCreateBtn" layoutX="90.0" layoutY="256.0" mnemonicParsing="false" text="Create" />
+      <Text layoutX="45.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+      <Text layoutX="33.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="39.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" />
+      <TextField fx:id="stfSetGenderField" layoutX="90.0" layoutY="141.0" />
+      <TextField fx:id="stfSetDutyField" layoutX="90.0" layoutY="171.0" />
+      <TextField fx:id="stfSetWLField" layoutX="90.0" layoutY="199.0" />
+      <Text layoutX="31.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+      <Text layoutX="38.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duty" />
+      <Text layoutX="24.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workload" />
+      <TextField fx:id="stfSetDeptIDField" layoutX="90.0" layoutY="228.0" />
+      <Text layoutX="30.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dept ID" />
+   </children>
+</AnchorPane>
