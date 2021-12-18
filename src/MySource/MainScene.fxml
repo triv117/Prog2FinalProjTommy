@@ -5,10 +5,8 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.MainSceneController">
    <children>
@@ -47,16 +45,13 @@
                            </children>
                         </VBox>
                         <Label layoutX="112.0" layoutY="5.0" text="Departments" />
-                        <TextField fx:id="viewField" layoutX="322.0" layoutY="54.0" />
-                        <Text layoutX="339.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Department  ID" />
                         <Button fx:id="stuViewBtn" layoutX="351.0" layoutY="83.0" mnemonicParsing="false" onAction="#goToViewStudentScene" text="View Students" />
                         <Button fx:id="teachViewBtn" layoutX="351.0" layoutY="110.0" mnemonicParsing="false" onAction="#goToViewTeacherScene" text="View Teachers" />
                         <Button fx:id="stfViewBtn" layoutX="351.0" layoutY="137.0" mnemonicParsing="false" onAction="#goToViewStaffScene" prefHeight="25.0" prefWidth="92.0" text="View Staff" />
-                        <TextField fx:id="searchField" layoutX="322.0" layoutY="231.0" />
                         <Button fx:id="searchBtn" layoutX="351.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Search" />
-                        <Text layoutX="352.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Person ID" />
                         <Button fx:id="deptLoadBtn" layoutX="196.0" layoutY="1.0" mnemonicParsing="false" onAction="#load" text="Load" />
                         <Button fx:id="deptRefreshBtn" layoutX="243.0" layoutY="1.0" mnemonicParsing="false" onAction="#refreshDeptList" text="Refresh" />
+                        <Label layoutX="381.0" layoutY="5.0" text="Views" />
                      </children>
                   </AnchorPane>
               </items>

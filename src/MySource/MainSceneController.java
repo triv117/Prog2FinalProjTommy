@@ -37,6 +37,7 @@ public class MainSceneController implements Initializable {
     public static ObservableList<Teacher> TempTeachList = FXCollections.observableArrayList();
     public static ObservableList<Student> TempStuList = FXCollections.observableArrayList();
     public static ObservableList<Staff> TempStaffList = FXCollections.observableArrayList();
+    public static ObservableList<Student> oStudentList = FXCollections.observableArrayList();
     //To ensure ID integrity
     public static ArrayList<Integer> IDList = new ArrayList<>();
 
@@ -74,7 +75,7 @@ public class MainSceneController implements Initializable {
     @FXML
     private TableColumn<Department, Teacher> deptDeanCol;
     @FXML
-    private TextField viewField;
+    private TextField stuViewField;
     @FXML
     private Button stuViewBtn;
     @FXML
@@ -384,19 +385,7 @@ public class MainSceneController implements Initializable {
         writer.close();
     }
     
-    //Department Functions:
-    @FXML
-    public void refreshDeptList(ActionEvent event){
-        displayDeptList(DeptList);
-    }
-    
-    @FXML
-    public void displayDeptList(ObservableList<Department> tableArray){
-        deptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        deptDescCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        deptTable.setItems(tableArray);
-    }
-    
+    //Department Functions
     @FXML
     public void addDeptartment(ActionEvent event) throws IOException{
         Department newDept = new Department(Integer.parseInt(deptSetIDField.getText()),
@@ -534,7 +523,7 @@ public class MainSceneController implements Initializable {
             }
         }
         if (contains==false){
-            throw new NullFieldException("Invalid Department ID!");
+            throw new NullFieldException("Invalid Teacher ID!");
         }
         if (stuModNameField.getText().trim().isEmpty()==false){
             DeptList.get(deptIndex).StudentList.get(stuIndex).setName(stuModNameField.getText());
@@ -554,7 +543,248 @@ public class MainSceneController implements Initializable {
         System.out.println("Student Modified: "+Integer.parseInt(stuModIDField.getText()));
         BackToMainScene(event);
     }
-        
+    
+    //Teacher Functions
+    @FXML
+    public void addTeacher(ActionEvent event) throws IOException{
+        int index=0;
+        boolean contains = false;
+        Teacher newTeach = new Teacher(Integer.parseInt(teachSetIDField.getText()),
+                teachSetNameField.getText(),Integer.parseInt(teachSetAgeField.getText()),
+                teachSetGenderField.getText(), teachSetSpecField.getText(), 
+                teachSetDegField.getText());
+        if (IDList.contains(Integer.parseInt(teachSetIDField.getText()))==true){
+            throw new IDIntegrityException("ID '"+Integer.parseInt(teachSetIDField.getText())+"' is already in use");
+        }
+        if (teachSetDeptIDField.getText().trim().isEmpty()==true){
+            TempTeachList.add(newTeach);
+        }
+        else{
+            for(int i = 0; i<DeptList.size(); i++){
+                if(DeptList.get(i).getId()==Integer.parseInt(teachSetDeptIDField.getText())){
+                    newTeach.setDept_id(Integer.parseInt(teachSetDeptIDField.getText()));
+                    index=i;
+                    contains=true;
+                }
+            }
+            if (contains==true){
+                DeptList.get(index).TeacherList.add(newTeach);
+            }
+            else{
+                throw new NullFieldException("Invalid Dept ID!");
+            }
+        }
+        IDList.add(Integer.parseInt(teachSetIDField.getText()));
+        System.out.println("New Teacher Created: "+Integer.parseInt(teachSetIDField.getText()));
+        BackToMainScene(event);
+    }
+    
+    @FXML
+    public void deleteTeacher(ActionEvent event) throws IOException{
+        int deptIndex = 0;
+        int teachIndex = 0;
+        boolean contains = false;
+        if (teachDelField.getText().trim().isEmpty()==true){
+            throw new NullFieldException("Field is Empty!");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            for(int j = 0; j<DeptList.get(i).TeacherList.size(); j++){
+                if(DeptList.get(i).TeacherList.get(j).getId()==Integer.parseInt(teachDelField.getText())){
+                    deptIndex = i;
+                    teachIndex = j;
+                    DeptList.get(deptIndex).TeacherList.remove(teachIndex);
+                    System.out.println("Teacher Deleted: "+Integer.parseInt(teachDelField.getText()));
+                    contains = true;
+                }
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid Teacher ID!");
+        }
+        BackToMainScene(event);
+    }
+    
+    @FXML
+    public void ModifyTeacher(ActionEvent event) throws IOException{
+        int deptIndex = 0;
+        int teachIndex = 0;
+        boolean contains = false;
+        if (teachModIDField.getText().trim().isEmpty()==true){
+            throw new NullFieldException("Field is Empty!");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            for(int j = 0; j<DeptList.get(i).TeacherList.size(); j++){
+                if(DeptList.get(i).TeacherList.get(j).getId()==Integer.parseInt(teachModIDField.getText())){
+                    deptIndex=i;
+                    teachIndex=j;
+                    contains = true;
+                }
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid Staff ID!");
+        }
+        if (teachModNameField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).TeacherList.get(teachIndex).setName(teachModNameField.getText());
+        }
+        if (teachModAgeField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).TeacherList.get(teachIndex).setAge(Integer.parseInt(teachModNameField.getText()));
+        }
+        if (teachModGenderField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).TeacherList.get(teachIndex).setGender(teachModGenderField.getText());
+        }
+        if (teachModSpecField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).TeacherList.get(teachIndex).setSpecialty(teachModSpecField.getText());
+        }
+        if (teachModDegField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).TeacherList.get(teachIndex).setDegree(teachModDegField.getText());
+        }
+        System.out.println("Teacher Modified: "+Integer.parseInt(teachModIDField.getText()));
+        BackToMainScene(event);
+    }   
+    
+    //Staff Functions:
+    @FXML
+    public void addStaff(ActionEvent event) throws IOException{
+        int index=0;
+        boolean contains = false;
+        Staff newStf = new Staff(Integer.parseInt(stfSetIDField.getText()),
+                stfSetNameField.getText(),Integer.parseInt(stfSetAgeField.getText()),
+                stfSetGenderField.getText(), stfSetDutyField.getText(), 
+                Integer.parseInt(stfSetWLField.getText()),Integer.parseInt(stfSetDeptIDField.getText()));
+        if (IDList.contains(Integer.parseInt(stfSetIDField.getText()))==true){
+            throw new IDIntegrityException("ID '"+Integer.parseInt(stfSetIDField.getText())+"' is already in use");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            if(DeptList.get(i).getId()==Integer.parseInt(stfSetDeptIDField.getText())){
+                index=i;
+                contains=true;
+            }
+        }
+        if (contains==true){
+            DeptList.get(index).StaffList.add(newStf);
+        }
+        else{
+            throw new NullFieldException("Invalid Dept ID!");
+        }
+        IDList.add(Integer.parseInt(stfSetIDField.getText()));
+        System.out.println("New Staff Created: "+Integer.parseInt(stfSetIDField.getText()));
+        BackToMainScene(event);
+    }
+    
+    @FXML
+    public void deleteStaff(ActionEvent event) throws IOException{
+        int deptIndex = 0;
+        int stfIndex = 0;
+        boolean contains = false;
+        if (stfDelField.getText().trim().isEmpty()==true){
+            throw new NullFieldException("Field is Empty!");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            for(int j = 0; j<DeptList.get(i).StaffList.size(); j++){
+                if(DeptList.get(i).StaffList.get(j).getId()==Integer.parseInt(stfDelField.getText())){
+                    deptIndex = i;
+                    stfIndex = j;
+                    DeptList.get(deptIndex).StaffList.remove(stfIndex);
+                    System.out.println("Staff Deleted: "+Integer.parseInt(stfDelField.getText()));
+                    contains = true;
+                }
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid Staff ID!");
+        }
+        BackToMainScene(event);
+    }
+    
+    @FXML
+    public void ModifyStaff(ActionEvent event) throws IOException{
+        int deptIndex = 0;
+        int stfIndex = 0;
+        boolean contains = false;
+        if (stfModIDField.getText().trim().isEmpty()==true){
+            throw new NullFieldException("Field is Empty!");
+        }
+        for(int i = 0; i<DeptList.size(); i++){
+            for(int j = 0; j<DeptList.get(i).StaffList.size(); j++){
+                if(DeptList.get(i).StaffList.get(j).getId()==Integer.parseInt(stfModIDField.getText())){
+                    deptIndex=i;
+                    stfIndex=j;
+                    contains = true;
+                }
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid Staff ID!");
+        }
+        if (stfModNameField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StaffList.get(stfIndex).setName(stfModNameField.getText());
+        }
+        if (stfModAgeField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StaffList.get(stfIndex).setAge(Integer.parseInt(stfModNameField.getText()));
+        }
+        if (stfModGenderField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StaffList.get(stfIndex).setGender(stfModGenderField.getText());
+        }
+        if (stfModDutyField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StaffList.get(stfIndex).setDuty(stfModDutyField.getText());
+        }
+        if (stfModWorkField.getText().trim().isEmpty()==false){
+            DeptList.get(deptIndex).StaffList.get(stfIndex).setWorkload(Integer.parseInt(stfModWorkField.getText()));
+        }
+        System.out.println("Staff Modified: "+Integer.parseInt(stfModIDField.getText()));
+        BackToMainScene(event);
+    }
+    //View Functions
+    @FXML
+    public void refreshDeptList(ActionEvent event){
+        displayDeptList(DeptList);
+    }
+    
+    @FXML
+    public void displayDeptList(ObservableList<Department> tableArray){
+        deptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        deptDescCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        deptTable.setItems(tableArray);
+    }
+    
+    @FXML
+    public void refreshStuList(ActionEvent event) throws IOException{
+        oStudentList.clear();
+        int index = 0;
+        boolean contains = false;
+        System.out.println("1");
+        for(int i = 0; i<DeptList.size(); i++){
+            System.out.println("2");
+            if(DeptList.get(i).getId()==Integer.parseInt(stuViewField.getText())){
+                System.out.println("3");
+                index = i;
+                contains = true;
+            }
+        }
+        if (contains==false){
+            throw new NullFieldException("Invalid Dept ID!");
+        }
+        System.out.println("4");
+        for(int i = 0; i<DeptList.get(index).StudentList.size(); i++){
+            System.out.println("5");
+            oStudentList.add(DeptList.get(index).StudentList.get(i));
+        }
+        System.out.println("6");
+        createStuList(oStudentList);
+        System.out.println("7");
+    }
+    
+    @FXML
+    public void createStuList(ObservableList<Student> tableArray){
+        stuIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        stuNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        stuAgeCol.setCellValueFactory(new PropertyValueFactory<>("age"));
+        stuGenderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        stuCourseCol.setCellValueFactory(new PropertyValueFactory<>("course"));
+        stuSemesterCol.setCellValueFactory(new PropertyValueFactory<>("semester"));
+        stuTbl.setItems(tableArray);
+    }
     
     //Scene Transitions:
     private Stage stage;
@@ -709,3 +939,4 @@ public class MainSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
 }
+ 

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.MainSceneController">
@@ -18,8 +19,9 @@
             <TableColumn fx:id="stuSemesterCol" prefWidth="70.5" text="Semester" />
         </columns>
       </TableView>
-      <Button fx:id="stuMenuBtn" layoutX="16.0" layoutY="364.0" mnemonicParsing="false" text="Go Back" />
+      <Button fx:id="stuMenuBtn" layoutX="16.0" layoutY="364.0" mnemonicParsing="false" onAction="#BackToMainScene" text="Go Back" />
       <Label layoutX="270.0" layoutY="21.0" text="Students" />
-      <Button fx:id="stuLoadBtn" layoutX="531.0" layoutY="26.0" mnemonicParsing="false" text="Refresh" />
+      <Button fx:id="stuLoadBtn" layoutX="531.0" layoutY="26.0" mnemonicParsing="false" onAction="#refreshStuList" text="Refresh" />
+      <TextField fx:id="stuViewField" layoutX="375.0" layoutY="26.0" />
    </children>
 </AnchorPane>

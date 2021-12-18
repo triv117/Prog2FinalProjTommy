@@ -121,6 +121,16 @@ public class Teacher extends Person implements PayRoll {
         this.dept_id = dept_id;
     }
 
+    public Teacher(int id, String name, int age, String gender,
+            String specialty, String degree) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.specialty = specialty; 
+        this.degree = degree;
+    }
+    
     @Override
     public String toString() {
         return "Teacher{id=" +id+", name="+name+", age="+age+", gender="+gender+
