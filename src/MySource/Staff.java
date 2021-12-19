@@ -109,6 +109,7 @@ public class Staff extends Person implements PayRoll {
 
     @Override
     public String toString() {
-        return "Staff{" + "duty=" + duty + ", workload=" + workload + '}';
+        return "Staff{id=" +id+ ", name=" +name+ ", age=" +age+ ", gender=" +gender+ ", duty=" +
+                duty+ ", workload=" + workload + '}';
     }  
 }

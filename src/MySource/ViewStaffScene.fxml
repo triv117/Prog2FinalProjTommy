@@ -4,11 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.MainSceneController">
    <children>
-      <TableView fx:id="stfTb" layoutX="16.0" layoutY="54.0" prefHeight="306.0" prefWidth="571.0">
+      <TableView fx:id="stfTbl" layoutX="16.0" layoutY="54.0" prefHeight="306.0" prefWidth="571.0">
         <columns>
           <TableColumn fx:id="stfIDCol" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="stfNameCol" prefWidth="154.5" text="Name" />
@@ -18,8 +19,9 @@
             <TableColumn fx:id="stfWorkCol" prefWidth="90.0" text="Workload" />
         </columns>
       </TableView>
-      <Button fx:id="stfMenuBtn" layoutX="16.0" layoutY="364.0" mnemonicParsing="false" text="Go Back" />
+      <Button fx:id="stfMenuBtn" layoutX="16.0" layoutY="364.0" mnemonicParsing="false" onAction="#BackToMainScene" text="Go Back" />
       <Label layoutX="276.0" layoutY="21.0" text="Staff" />
-      <Button fx:id="stfLoadBtn" layoutX="530.0" layoutY="26.0" mnemonicParsing="false" text="Refresh" />
+      <Button fx:id="stfLoadBtn" layoutX="530.0" layoutY="26.0" mnemonicParsing="false" onAction="#refreshStfList" text="Refresh" />
+      <TextField fx:id="stfViewField" layoutX="381.0" layoutY="26.0" />
    </children>
 </AnchorPane>

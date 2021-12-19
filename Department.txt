@@ -1,3 +1,3 @@
-1001,Exact Sciences
-1003,Humanities
-1005,Social Sciences
+1001,Exact Sciences,1234
+1003,Humanities,2345
+1005,Social Sciences,6854

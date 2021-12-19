@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MySource.MainSceneController">
@@ -15,11 +16,12 @@
             <TableColumn fx:id="teachAgeCol" prefWidth="63.5" text="Age" />
             <TableColumn fx:id="teachGenderCol" prefWidth="79.0" text="Gender" />
             <TableColumn fx:id="teachSpecCol" prefWidth="111.0" text="Specialty" />
-            <TableColumn fx:id="stuDegCol" prefWidth="90.0" text="Degree" />
+            <TableColumn fx:id="teachDegCol" prefWidth="90.0" text="Degree" />
         </columns>
       </TableView>
-      <Button fx:id="teachMenuBtn" layoutX="16.0" layoutY="364.0" mnemonicParsing="false" text="Go Back" />
+      <Button fx:id="teachMenuBtn" layoutX="16.0" layoutY="364.0" mnemonicParsing="false" onAction="#BackToMainScene" text="Go Back" />
       <Label layoutX="270.0" layoutY="21.0" text="Teacher" />
-      <Button fx:id="teachLoadBtn" layoutX="531.0" layoutY="26.0" mnemonicParsing="false" text="Refresh" />
+      <Button fx:id="teachLoadBtn" layoutX="531.0" layoutY="26.0" mnemonicParsing="false" onAction="#refreshTeachList" text="Refresh" />
+      <TextField fx:id="teachViewField" layoutX="382.0" layoutY="26.0" />
    </children>
 </AnchorPane>

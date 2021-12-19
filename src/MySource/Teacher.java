@@ -133,8 +133,7 @@ public class Teacher extends Person implements PayRoll {
     
     @Override
     public String toString() {
-        return "Teacher{id=" +id+", name="+name+", age="+age+", gender="+gender+
-                ", specialty=" + specialty + ", degree=" + degree + '}';
+        return ""+id;
     }
     
     @Override

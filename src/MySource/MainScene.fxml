@@ -48,10 +48,11 @@
                         <Button fx:id="stuViewBtn" layoutX="351.0" layoutY="83.0" mnemonicParsing="false" onAction="#goToViewStudentScene" text="View Students" />
                         <Button fx:id="teachViewBtn" layoutX="351.0" layoutY="110.0" mnemonicParsing="false" onAction="#goToViewTeacherScene" text="View Teachers" />
                         <Button fx:id="stfViewBtn" layoutX="351.0" layoutY="137.0" mnemonicParsing="false" onAction="#goToViewStaffScene" prefHeight="25.0" prefWidth="92.0" text="View Staff" />
-                        <Button fx:id="searchBtn" layoutX="351.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Search" />
+                        <Button fx:id="searchBtn" layoutX="351.0" layoutY="259.0" mnemonicParsing="false" onAction="#goToSearchScene" prefHeight="25.0" prefWidth="92.0" text="Search" />
                         <Button fx:id="deptLoadBtn" layoutX="196.0" layoutY="1.0" mnemonicParsing="false" onAction="#load" text="Load" />
                         <Button fx:id="deptRefreshBtn" layoutX="243.0" layoutY="1.0" mnemonicParsing="false" onAction="#refreshDeptList" text="Refresh" />
                         <Label layoutX="381.0" layoutY="5.0" text="Views" />
+                        <Button fx:id="saveBtn" layoutX="303.0" layoutY="1.0" mnemonicParsing="false" onAction="#save" text="Save" />
                      </children>
                   </AnchorPane>
               </items>
